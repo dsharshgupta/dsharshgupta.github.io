@@ -1,752 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harsh Gupta - Machine Learning Engineer</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --light-gray: #e2e8f0;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            background-color: var(--dark);
-            color: white;
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-        
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .hero {
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
-            color: white;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: var(--secondary);
-        }
-        
-        section {
-            padding: 80px 0;
-        }
-        
-        section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: var(--dark);
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .profile-img {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .profile-img img {
-            border-radius: 50%;
-            max-width: 300px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        
-        .skill-category {
-            flex: 1;
-            min-width: 250px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-5px);
-        }
-        
-        .skill-category h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .skill-list {
-            list-style: none;
-        }
-        
-        .skill-list li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .skill-list li::before {
-            content: "•";
-            color: var(--primary);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .experience-timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .experience-timeline::after {
-            content: "";
-            position: absolute;
-            width: 6px;
-            background-color: var(--light-gray);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-content {
-            padding: 20px;
-            background-color: white;
-            position: relative;
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .timeline-content h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .timeline-content .date {
-            color: var(--gray);
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-        
-        .timeline-content ul {
-            margin-left: 20px;
-        }
-        
-        .timeline-content ul li {
-            margin-bottom: 8px;
-        }
-        
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .project-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .project-img {
-            height: 200px;
-            background-color: var(--light-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .project-details {
-            padding: 20px;
-        }
-        
-        .project-details h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-        
-        .project-details p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .project-links a {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: var(--light-gray);
-            color: var(--dark);
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: background-color 0.3s;
-        }
-        
-        .project-links a:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .education-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .education-item {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        
-        .education-item h3 {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .education-item p {
-            margin: 5px 0;
-        }
-        
-        .degree {
-            font-weight: bold;
-        }
-        
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .contact-form {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background-color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--light-gray);
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-        
-        .social-links a:hover {
-            color: var(--primary);
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .experience-timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Harsh Gupta</a>
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#education">Education</a>
-                    <a href="#contact">Contact</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+  <head>
+    <title>Harsh Gupta - Data Scientist Portfolio</title> <!-- Slightly more descriptive title -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Add Meta Description -->
+    <meta name="description" content="Portfolio of Harsh Gupta, a Data Scientist with experience in Data Analysis, Machine Learning, Deep Learning, and Statistical Analysis. View projects and resume.">
+    <!-- Add Favicon (Optional) - Create a favicon.ico file and place it in the root or images folder -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- Or link to an image -->
+    <!-- <link rel="icon" href="images/favicon.png" type="image/png"> -->
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Harsh Gupta</h1>
-                <p>Machine Learning Engineer & Data Scientist specializing in AI agents, RAG systems, and computer vision</p>
-                <a href="#contact" class="btn">Get in Touch</a>
-            </div>
-        </div>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Link the new custom CSS file -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- REMOVE the <style> block that was here -->
+
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <!-- Add a Skip Link for Accessibility (Optional but good practice) -->
+    <a href="#about-section" class="skip-link">Skip to main content</a>
+
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Harsh Gupta</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
+	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
+	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+
+	  <section id="home-section" class="hero">
+		  <div class="home-slider owl-carousel">
+	       <div class="slider-item ">
+	      	<div class="overlay"></div>
+	         <div class="container">
+	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+              <!-- Add alt text to profile image -->
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/IMG-20220416-WA0038-removebg-preview.png);" aria-label="Profile picture of Harsh Gupta">
+	          	 <div class="overlay"></div>
+	          	</div>
+		          <div class="one-forth d-flex align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Hello!</span>
+			            <h1 class="mb-4 mt-3">I'm <span>Harsh Gupta</span></h1>
+
+						<!-- Element to contain animated typing -->
+                        <!-- Ensure it has an ID and perhaps role for accessibility -->
+						<span id="typing-animation" role="status" aria-live="polite"></span>
+
+						<!-- REMOVE the <script> block for typing animation that was here -->
+
+						<br>
+						<br>
+			            <!-- Changed title slightly -->
+                        <h2>A Data Science Professional</h2>
+						<!-- Removed commented out H2 -->
+			            <p>
+                            <!-- Add target="_blank" and rel attribute -->
+                            <a href="https://www.linkedin.com/in/harsh-gupta-605410223" class="btn btn-primary py-3 px-4" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+							<a href="https://github.com/dsharshgupta" class="btn btn-white btn-outline-white py-3 px-4" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </p>
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+		</div>
     </section>
 
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a Machine Learning Engineer with expertise in building AI agents, Retrieval-Augmented Generation (RAG) systems, and computer vision applications. Currently pursuing a Bachelor of Science in Data Science and Applications at IIT Madras with a strong foundation in mathematics.</p>
-                    <p>My experience spans across consulting for US-based companies, research at IIT Madras Brain Centre, and mentoring students in machine learning. I'm passionate about developing innovative AI solutions that solve real-world problems efficiently.</p>
-                    <p>With skills in Python, machine learning frameworks, and database systems, I specialize in designing and implementing AI-powered applications that enhance operational efficiency and create value for businesses.</p>
-                </div>
-                <div class="profile-img">
-                    <img src="/api/placeholder/300/300" alt="Harsh Gupta">
-                </div>
-            </div>
-        </div>
+    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+    	<div class="container">
+			<div class="row">
+				<div class="row d-flex align-items-stretch">
+					<div class="col-md-6 col-lg-5 d-flex">
+						<div class="img-about img d-flex align-items-stretch">
+							<div class="overlay">
+								<div class="row">
+									<div class="col-sm-6 col-md-5">
+									  <div class="about-img">
+                                        <!-- Add descriptive alt text -->
+										<img src="images/Screenshot 2024-05-04 114410.png" class="img-fluid rounded b-shadow-a" alt="Profile picture of Harsh Gupta - smiling">
+									  </div>
+									</div>
+									<div class="col-sm-6 col-md-7">
+									  <div class="about-info">
+										<p><span class="title-s">Name: </span> <span>Harsh Gupta</span></p>
+										<p><span class="title-s">Job Role: </span> <span>Data Scientist</span></p>
+										<!-- Consistent experience number -->
+                                        <p><span class="title-s">Experience: </span> <span>2 Years</span></p>
+										<p><span class="title-s">Location: </span> <span>Gurugram, Haryana, India</span></p> <!-- Changed Address to Location -->
+									  </div>
+									</div>
+								  </div>
+
+								<div class="skill-mf">
+									<p class="title-s">Skills</p>
+									<span>SQL</span> <span class="pull-right">80%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="SQL proficiency: 80%"></div> <!-- Added aria-label -->
+									</div>
+									<span>PYTHON</span> <span class="pull-right">90%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Python proficiency: 90%"></div> <!-- Added aria-label -->
+									</div>
+									<span>Deep Learning & Gen AI</span> <span class="pull-right">70%</span> <!-- Shortened for space -->
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Deep Learning and Generative AI proficiency: 70%"></div> <!-- Added aria-label -->
+									</div>
+									<span>Statistical Analysis</span> <span class="pull-right">90%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Statistical Analysis proficiency: 90%"></div> <!-- Added aria-label -->
+									</div>
+									<span>Machine Learning</span> <span class="pull-right">95%</span>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" aria-label="Machine Learning proficiency: 95%"></div> <!-- Changed valuenow to 95, added aria-label -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
+						<div class="row justify-content-start pb-3">
+							<div class="col-md-12 heading-section ftco-animate">
+								<h1 class="big">About</h1>
+								<h2 class="mb-4">About Me</h2>
+                                <!-- Minor text refinement for flow -->
+								<p>Data Scientist with 2 years of comprehensive experience in data science & analytics, holding a Bachelor's degree in Data Science and Programming from IIT Madras. Proficient in data analysis, statistical modeling, hypothesis testing, MLOps, Deep Learning, and Machine Learning. Proven ability to lead impactful projects and provide effective mentorship.</p>
+								<ul class="about-info mt-4 px-md-0 px-2">
+									<li class="d-flex"><span>Profile:</span> <span>Data Science & Analytics</span></li>
+									<li class="d-flex"><span>Domain:</span> <span>Information Technology</span></li> <!-- Expanded IT -->
+									<li class="d-flex"><span>Education:</span> <span>B.S. Data Science & Applications (IIT Madras)</span></li> <!-- Abbreviated degree -->
+									<li class="d-flex"><span>Language:</span> <span>English, Hindi</span></li>
+									<li class="d-flex"><span>Key Tools:</span> <span>Python (Sklearn, Tensorflow), SQL, Cloud (AWS)</span></li> <!-- Focused key tools -->
+									<li class="d-flex"><span>Other Skills:</span> <span>Power BI, Excel, Google Analytics, SEO, Git</span></li> <!-- Added Git -->
+									<li class="d-flex"><span>Interests:</span> <span>Teaching, Mentoring, Movies</span></li> <!-- Added Mentoring -->
+								</ul>
+							</div>
+						</div>
+
+						<div class="counter-wrap ftco-animate d-flex mt-md-3">
+							<div class="text">
+                                <!-- Ensure data-number matches project count -->
+								<p class="mb-4">
+									<span class="number" data-number="5">0</span> <span>+</span> <!-- Make sure this number is correct -->
+									<span>  Projects completed</span>
+								</p>
+								<p><a href="https://www.linkedin.com/in/harsh-gupta-605410223" class="btn btn-primary py-3 px-3" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p> <!-- More descriptive link text -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </section>
 
-    <section id="skills" style="background-color: #f8fafc;">
-        <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Technical</h3>
-                    <ul class="skill-list">
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>SQL</li>
-                        <li>BASH</li>
-                        <li>Data Structures</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Frameworks</h3>
-                    <ul class="skill-list">
-                        <li>Flask</li>
-                        <li>Vue</li>
-                        <li>Bootstrap</li>
-                        <li>FastAPI</li>
-                        <li>Jinja</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Libraries</h3>
-                    <ul class="skill-list">
-                        <li>Scikit-learn</li>
-                        <li>NumPy & Pandas</li>
-                        <li>PyTorch</li>
-                        <li>Hugging Face</li>
-                        <li>Langchain & ChromaDB</li>
-                        <li>Streamlit</li>
-                        <li>CrewAI</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Databases</h3>
-                    <ul class="skill-list">
-                        <li>ChromaDB</li>
-                        <li>SQLite</li>
-                        <li>MySQL</li>
-                        <li>PostgreSQL</li>
-                        <li>Neo4j</li>
-                    </ul>
-                </div>
-            </div>
+    <section class="ftco-section ftco-no-pb" id="resume-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center ftco-animate">
+          	<h1 class="big big-2">Resume</h1>
+            <h2 class="mb-4">Resume</h2>
+            <p>Summary of my experience and education. Download the full CV for details.</p> <!-- Added context -->
+          </div>
         </div>
-    </section>
 
-    <section id="experience">
-        <div class="container">
-            <h2>Work Experience</h2>
-            <div class="experience-timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Machine Learning Engineer - Consultant</h3>
-                        <p class="date">December 2024 - Present</p>
-                        <p><strong>Gebeo.Ai (California, USA)</strong> - Remote</p>
+		<div class="row">
+            <div class="col-md-12"> <!-- Wrap experience under one heading -->
+                <h3 class="mb-4" style="font-size: 1.5rem; font-weight: 600;">Experience</h3> <!-- Use H3 for subsection -->
+                <div class="underline" style="margin-bottom: 2rem;"></div> <!-- Simple underline -->
+            </div>
+		</div>
+
+		<div class="row">
+				<div class="col-md-6">
+					<div class="resume-wrap ftco-animate">
+						<span class="date">2022 - 2024</span> <!-- Consistent date format -->
+						<h2>Stats & ML Project Mentor</h2>
+						<span class="position">IIT Madras BS Program</span> <!-- Clarified position -->
+						<p class="mt-4">
+							<ul>
+                                <!-- Refined bullet points -->
+								<li>Instructed Statistics concepts to over 200 students in the IIT Madras BS program.</li>
+								<li>Mentored students on diverse Kaggle projects involving Machine Learning (classification, regression, NLP).</li>
+								<li>Recognized as a top Teaching Assistant for Statistics and Machine Learning courses.</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="resume-wrap ftco-animate">
+						<span class="date">Dec 2023 - Apr 2024</span> <!-- Consistent date format -->
+						<h2>Data Science Intern</h2>
+						<span class="position">Metagauss</span>
+						<p class="mt-4">Metagauss is a Canadian startup specializing in WordPress extensions and web products.</p> <!-- Shortened description -->
                         <ul>
-                            <li>Designing and developing AI agents using CrewAI, Autogen, Gemini, and advanced prompt engineering techniques</li>
-                            <li>Automating claim denial management for 835 forms with actionable recommendations</li>
-                            <li>Implementing ML models to categorize claim denial categories for improved operational efficiency</li>
+                            <li>Developed and deployed an RAG (Retrieval-Augmented Generation) system on AWS using ChatGPT and ChromaDB, leveraging internal company documents for enhanced HR processes.</li> <!-- More concise -->
                         </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Machine Learning Research Intern</h3>
-                        <p class="date">August 2024 – December 2025</p>
-                        <p><strong>Sudha Gopalakrishnan Brain Centre (IIT Madras)</strong> - Chennai, Tamil Nadu</p>
-                        <ul>
-                            <li>Trained SOTA models (YOLOV8, U-NET) for brain image segmentation</li>
-                            <li>Developed Text2SQL RAG system for brain data question answering</li>
-                            <li>Contributed to Neuro Voyager Platform for new site users</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Data Science Intern</h3>
-                        <p class="date">December 2023 – April 2024</p>
-                        <p><strong>Metagauss (Toronto, Canada)</strong> - Remote</p>
-                        <ul>
-                            <li>Developed a Retrieval-Augmented Generation (RAG) system for onboarding documentation</li>
-                            <li>Utilized ChromaDB, ChatGPT API, and AWS in project development</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <h3>Machine Learning Project Mentor & Stats Teaching Assistant</h3>
-                        <p class="date">January 2023 – August 2024</p>
-                        <p><strong>IIT Madras BS Program</strong> - Chennai, Tamil Nadu</p>
-                        <ul>
-                            <li>Mentored over 450 students in Machine Learning Kaggle projects</li>
-                            <li>Organized 7-day bootcamp for Machine Learning using Scikit-learn and Streamlit</li>
-                            <li>Conducted live sessions on G-meet, helping over 200 students in Statistics-2 course</li>
-                        </ul>
-                    </div>
-                </div>
+					</div>
+				</div>
+			</div>
+
+		<br>
+		<br>
+
+		<div class="row">
+            <div class="col-md-12"> <!-- Wrap education under one heading -->
+                <h3 class="mb-4" style="font-size: 1.5rem; font-weight: 600;">Education</h3> <!-- Use H3 for subsection -->
+                <div class="underline" style="margin-bottom: 2rem;"></div> <!-- Simple underline -->
             </div>
-        </div>
+		</div>
+
+		<div class="row">
+    			<div class="col-md-6">
+    				<div class="resume-wrap ftco-animate">
+    					<span class="date">2019 - 2022</span>
+    					<h2>Bachelor of Science (Mathematics)</h2> <!-- Specify degree -->
+    					<span class="position">Pratap University, Jaipur</span>
+    					<p class="mt-4">CGPA: 6.9</p> <!-- Simplified grade -->
+    				</div>
+    			</div>
+
+    			<div class="col-md-6">
+    				<div class="resume-wrap ftco-animate">
+    					<span class="date">2021 - 2025 (Expected)</span> <!-- Add expected if ongoing -->
+    					<h2>Bachelor of Science (Data Science & Applications)</h2> <!-- Specify degree -->
+    					<span class="position">Indian Institute of Technology (IIT) Madras</span> <!-- Full name -->
+    					<p class="mt-4">Current CGPA: 9.0</p> <!-- Clarified grade -->
+    				</div>
+				</div>
+    		</div>
+
+    		<div class="row justify-content-center mt-5">
+    			<div class="col-md-6 text-center ftco-animate">
+                    <!-- Ensure the PDF path is correct relative to index.html -->
+    				<p><a href="images/Harsh Gupta CV.pdf" class="btn btn-primary py-4 px-5" download="Harsh_Gupta_CV.pdf">Download CV</a></p> <!-- Added download attribute -->
+    			</div>
+    		</div>
+    	</div>
     </section>
 
-    <section id="projects" style="background-color: #f8fafc;">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/api/placeholder/350/200" alt="E-Commerce Customer Segmentation">
-                    </div>
-                    <div class="project-details">
-                        <h3>E-Commerce Customer Segmentation</h3>
-                        <p>Achieved 12th place out of 700+ students in a college Kaggle competition, employing a Stacking Classifier as the optimal model.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/dsharshgupta/e-commerce-data-machine-learning" target="_blank">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/api/placeholder/350/200" alt="Library Management System">
-                    </div>
-                    <div class="project-details">
-                        <h3>Library Management System</h3>
-                        <p>Developed a Flask-based web application enabling users to request e-book issuance, subject to librarian approval.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/dsharshgupta/Library-Management-system-flask_app" target="_blank">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/api/placeholder/350/200" alt="RAG System for Onboarding">
-                    </div>
-                    <div class="project-details">
-                        <h3>RAG System for Employee Onboarding</h3>
-                        <p>Built a Retrieval-Augmented Generation system to answer inquiries from newly onboarded employees about company policies and procedures.</p>
-                        <div class="project-links">
-                            <a href="#" target="_blank">Demo</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img">
-                        <img src="/api/placeholder/350/200" alt="Brain Image Segmentation">
-                    </div>
-                    <div class="project-details">
-                        <h3>Brain Image Segmentation</h3>
-                        <p>Trained YOLOV8 and U-NET models to segment various parts of the brain at different hierarchical levels for medical research.</p>
-                        <div class="project-links">
-                            <a href="#" target="_blank">Research Paper</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section class="ftco-section" id="project-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Projects</h1>
+            <h2 class="mb-4">My Projects</h2> <!-- Slightly personalized -->
+            <p>Here are a few examples of projects I've worked on. More available on GitHub.</p> <!-- Added context -->
+          </div>
         </div>
+        <div class="row d-flex">
+          <!-- Project 1 -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <!-- Add alt text, target blank, rel -->
+              <a href="https://github.com/dsharshgupta/Upstox-api-RIL-data-ETL-AWS" class="block-20 zoom-effect" style="background-image: url('images/Designer (1).png');" target="_blank" rel="noopener noreferrer" aria-label="Link to Upstox API ETL project on GitHub">
+                 <!-- Add alt text inside image or use aria-label -->
+                 <img src="images/Designer (1).png" alt="Cloud ETL pipeline diagram" style="visibility: hidden;"> <!-- Hidden image for semantics -->
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/dsharshgupta/Upstox-api-RIL-data-ETL-AWS" target="_blank" rel="noopener noreferrer">Upstox API ETL Project on AWS</a></h3> <!-- Add target blank, rel -->
+                <p>Developed an automated ETL pipeline on AWS using Lambda, EventBridge, Glue, S3, and Athena to process Reliance stock data from the Upstox API daily.</p> <!-- Concise description -->
+              </div>
+            </div>
+          </div>
+          <!-- Project 2 -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+               <!-- Add alt text, target blank, rel -->
+              <a href="https://github.com/dsharshgupta/e-commerce-data-machine-learning" class="block-20 zoom-effect" style="background-image: url('images/Designer (2).png');" target="_blank" rel="noopener noreferrer" aria-label="Link to E-commerce ML Prediction project on GitHub">
+                 <img src="images/Designer (2).png" alt="Abstract representation of e-commerce machine learning" style="visibility: hidden;">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://github.com/dsharshgupta/e-commerce-data-machine-learning" target="_blank" rel="noopener noreferrer">E-commerce ML Prediction</a></h3> <!-- Add target blank, rel -->
+                <p>Performed EDA and built a high-accuracy ML model for e-commerce data, achieving a top 15 rank (out of 800+) in a Kaggle competition.</p> <!-- Concise description -->
+              </div>
+            </div>
+          </div>
+          <!-- Project 3 -->
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry">
+               <!-- Add alt text, target blank, rel -->
+              <a href="https://dsharshgupta.pythonanywhere.com/" class="block-20 zoom-effect" style="background-image: url('images/output.jpg');" target="_blank" rel="noopener noreferrer" aria-label="Link to Library Management System Web App Demo">
+                 <img src="images/output.jpg" alt="Screenshot of Library Management System web application" style="visibility: hidden;">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="https://dsharshgupta.pythonanywhere.com/" target="_blank" rel="noopener noreferrer">Library Management System - Flask App</a></h3> <!-- Add target blank, rel -->
+                <p>Developed a Flask web application for library management with user/librarian roles, book browsing, requests, feedback, and basic analytics features.</p> <!-- Concise description -->
+              </div>
+            </div>
+          </div>
+        </div>
+	<br>
+		<!-- Second Row of Projects -->
+		<div class="row d-flex justify-content-center">
+            <!-- Project 4 -->
+			<div class="col-md-4 d-flex ftco-animate">
+				<div class="blog-entry justify-content-end">
+                 <!-- Add alt text, target blank, rel -->
+				<a href="https://github.com/dsharshgupta/BDM-Capstone-Project/tree/main" class="block-20 zoom-effect" style="background-image: url('images/output (1).jpg');" target="_blank" rel="noopener noreferrer" aria-label="Link to Business Analysis Ration Shop project on GitHub">
+				   <img src="images/output (1).jpg" alt="Visual representation of business data analysis" style="visibility: hidden;">
+                </a>
+				<div class="text mt-3 float-right d-block">
+				  <h3 class="heading"><a href="https://github.com/dsharshgupta/BDM-Capstone-Project/tree/main" target="_blank" rel="noopener noreferrer">Business Analysis: Cattle Feed Ration Shop</a></h3> <!-- Add target blank, rel -->
+				  <p>Analyzed sales and inventory data for a ration shop using Pareto analysis and correlation to identify profit drivers and provide recommendations for improvement.</p> <!-- Concise description -->
+				</div>
+			  </div>
+			</div>
+            <!-- Project 5 -->
+			<div class="col-md-4 d-flex ftco-animate">
+				<div class="blog-entry justify-content-end">
+                 <!-- Add alt text, target blank, rel -->
+				<a href="https://github.com/dsharshgupta/Web-Scrapping-and-Sentiment-Analysis-Using-NLP." class="block-20 zoom-effect" style="background-image: url('images/output (2).jpg');" target="_blank" rel="noopener noreferrer" aria-label="Link to Web Scraping Sentiment Analysis project on GitHub">
+				   <img src="images/output (2).jpg" alt="Concept image for web scraping and sentiment analysis" style="visibility: hidden;">
+                </a>
+				<div class="text mt-3 float-right d-block">
+				  <h3 class="heading"><a href="https://github.com/dsharshgupta/Web-Scrapping-and-Sentiment-Analysis-Using-NLP." target="_blank" rel="noopener noreferrer">Web Scraping & Sentiment Analysis</a></h3> <!-- Add target blank, rel -->
+				  <p>Built a Python tool using Beautiful Soup and NLTK to scrape web content, perform text preprocessing, and conduct sentiment analysis, outputting structured results.</p> <!-- Concise description -->
+				</div>
+			  </div>
+			</div>
+            <!-- Add a placeholder if you have fewer than 6 projects or plan to add more -->
+            <!-- <div class="col-md-4 d-flex ftco-animate"></div> -->
+		 </div>
+	  </div>
     </section>
 
-    <section id="education">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-container">
-                <div class="education-item">
-                    <h3>Indian Institute of Technology Madras</h3>
-                    <p class="degree">Bachelor of Science, Data Science and Applications</p>
-                    <p>CGPA: 8.91</p>
-                    <p>2025</p>
-                </div>
-                <div class="education-item">
-                    <h3>Pratap University</h3>
-                    <p class="degree">Bachelor of Mathematics</p>
-                    <p>CGPA: 6.9</p>
-                    <p>2022</p>
-                </div>
+	<section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter" style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5"> <!-- Added background -->
+      <div class="overlay"></div> <!-- Added overlay for text readability -->
+      <div class="container">
+		<div class="row d-md-flex align-items-center">
+          <!-- Counter Items - ensure data-number values are correct -->
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+             <div class="block-18">
+               <div class="text">
+                 <strong class="number" data-number="2">0</strong> <!-- Example: Years Experience -->
+                 <span>Years Experience</span>
+               </div>
+             </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="5">0</strong> <!-- Project Count -->
+                <span>Projects Completed</span>
+              </div>
             </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="200">0</strong> <!-- Mentored Students -->
+                <span>Mentored Students</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+            <div class="block-18">
+              <div class="text">
+                <strong class="number" data-number="500">0</strong> <!-- Fun Metric -->
+                <span>Cups of Coffee</span>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="contact" style="background-color: #f8fafc;">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Gurugram, Haryana, India</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>dsharshgupta@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+91 8890817327</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🔗</div>
-                        <div>
-                            <h4>LinkedIn</h4>
-                            <p><a href="https://www.linkedin.com/in/harsh-gupta-605410223" style="color: var(--primary); text-decoration: none;">linkedin.com/in/harsh-gupta-605410223</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🌐</div>
-                        <div>
-                            <h4>Website</h4>
-                            <p><a href="http://www.bswallebhaiya.in" style="color: var(--primary); text-decoration: none;">www.bswallebhaiya.in</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Your Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
+	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
+        <div class="overlay"></div> <!-- Added overlay -->
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-md-7 ftco-animate text-center">
+                        <!-- Adjusted heading -->
+						<h2>Interested in collaborating or hiring?</h2>
+						<p class="mb-4">I'm passionate about solving business problems & uncovering hidden data stories. Let's connect!</p>
+						<p><a href="#contact-section" class="btn btn-primary py-3 px-5 mr-2">Contact Me</a> <!-- Link to contact section -->
+                           <a href="https://github.com/dsharshgupta" class="btn btn-white btn-outline-white py-3 px-5" target="_blank" rel="noopener noreferrer">My GitHub</a></p> <!-- Add target blank, rel -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+            <p>Feel free to reach out via email, phone, or LinkedIn. You can also use the question form below.</p> <!-- Updated text -->
+          </div>
+        </div>
+
+        <div class="row d-flex contact-info mb-5">
+          <!-- Contact Info Boxes -->
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center"> <span class="icon-map-signs"></span> </div>
+          		<h3 class="mb-4">Location</h3>
+	            <p>Gurugram, Haryana, India</p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center"> <span class="icon-phone2"></span> </div>
+          		<h3 class="mb-4">Contact Number</h3>
+	            <p><a href="tel://+918890817327">+91 88908 17327</a></p> <!-- Added country code -->
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center"> <span class="icon-paper-plane"></span> </div>
+          		<h3 class="mb-4">Email Address</h3>
+	            <p><a href="mailto:dsharshgupta@gmail.com">dsharshgupta@gmail.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center"> <span class="icon-globe"></span> </div>
+          		<h3 class="mb-4">Download Resume</h3>
+                <!-- Ensure path is correct, added download attribute -->
+	            <p><a href="images/Harsh Gupta CV.pdf" download="Harsh_Gupta_CV.pdf">Download CV</a></p> <!-- Corrected link text -->
+	          </div>
+          </div>
+        </div>
+
+        <!-- Question Form Link -->
+        <div class="row justify-content-center">
+            <div class="col-md-7 ftco-animate text-center">
+                <h2>Have a<span> Question?</span></h2>
+                <p>Use the button below to send me a message via Google Forms.</p>
+                <p><a href="https://forms.gle/Lu4kLyGA1wiS3kRZ6" class="btn btn-primary py-3 px-5" target="_blank" rel="noopener noreferrer">Ask Question Here</a></p> <!-- Added target blank, rel -->
             </div>
         </div>
+        <br>
+        <!-- Social Links -->
+        <div class="row justify-content-center">
+            <div class="col-md-7 ftco-animate text-center">
+                <h4 class="mb-3">Find me on</h4>
+                <ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
+                  <li class="ftco-animate"><a href="https://www.linkedin.com/in/harsh-gupta-605410223" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><span class="icon-linkedin"></span></a></li>
+                  <li class="ftco-animate"><a href="https://github.com/dsharshgupta" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><span class="icon-github"></span></a></li> <!-- Added GitHub -->
+                  <li class="ftco-animate"><a href="https://www.instagram.com/ds.harshgupta/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"><span class="icon-instagram"></span></a></li>
+                </ul>
+            </div>
+        </div>
+        <br>
+      </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://github.com/dsharshgupta" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/harsh-gupta-605410223" target="_blank">LinkedIn</a>
-                <a href="http://www.bswallebhaiya.in" target="_blank">Personal Website</a>
-            </div>
-            <p>&copy; 2025 Harsh Gupta. All Rights Reserved.</p>
-        </div>
-    </footer>
-</body>
+
+    <footer class="ftco-footer ftco-section">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-12 text-center">
+              <!-- Keep or modify copyright as needed -->
+			  <p>
+	Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | Harsh Gupta
+    <!-- Optional: Link back to template origin if required by license -->
+    <!-- | Template by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
+              </p>
+			</div>
+		  </div>
+		</div>
+	  </footer>
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+  <!-- Ensure jQuery is loaded first -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+
+  <!-- Load your custom main.js last -->
+  <script src="js/main.js"></script>
+
+  </body>
 </html>
